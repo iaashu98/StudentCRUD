@@ -1,0 +1,52 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width" />
+    <title>Show Details</title>
+</head>
+<body>
+    <div class="col my-md-3">
+        <a href="/Student/AddRecord" class="btn btn-secondary btn-lg">Add Student</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">S_Name</th>
+                    <th scope="col">S_Age</th>
+                    <th scope="col">S_Address</th>
+                    <th scope="col">Subject_opted</th>
+                    <th scope="col">Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (System.Data.DataRow dataRow in ViewBag.student.Rows)
+                    {
+                        <tr>
+                            <td>@dataRow["S_Name"]</td>
+                            <td>@dataRow["S_Age"]</td>
+                            <td>@dataRow["S_Address"]</td>
+                            <td>@dataRow["Subject_opted"]</td>
+                            <td>
+                                <a href="/Student/UpdateRecord?Id=@dataRow["S_id"]" class="btn btn-success btn-sm">Update</a>
+                                <a href="/Student/DeleteRecord?Id=@dataRow["S_id"]" class="btn btn-danger btn-sm" onclick="return confirm ('Are you sure want to delete record?');">Delete</a>
+                            </td>
+                        </tr>
+
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
